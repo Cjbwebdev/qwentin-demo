@@ -1,5 +1,5 @@
-# Roadmap — qwentin-demo
+# Roadmap — shop
+## Completed
+* Cloned repository
+* Initialized project
 ## Backlog
-* Build out templates and landing pages
-* Integrate Stripe for payment processing
-* Ensure site security
