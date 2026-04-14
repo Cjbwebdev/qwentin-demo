@@ -1,0 +1,31 @@
+{# Header include for global navigation and search #}
+<header class="page-header" role="banner">
+  <div class="page-header__inner container">
+    <a href="/" class="brand-link" aria-label="Go to homepage">Qwentin</a>
+
+    <form action="/shop/" method="get" class="search-form" role="search">
+      <label for="site-search" class="sr-only">Search products</label>
+      <input id="site-search" name="q" type="search" placeholder="Search products" class="search-field" autocomplete="off">
+      <button type="submit" class="search-button">Search</button>
+    </form>
+
+    <nav class="primary-nav" aria-label="Primary site navigation">
+      <a href="/shop/" class="primary-nav__link">Shop</a>
+      <a href="/categories/" class="primary-nav__link">Collections</a>
+      <a href="/cart/" class="primary-nav__link">Cart</a>
+      <a href="/account/" class="primary-nav__link primary-nav__link--accent">Account</a>
+    </nav>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" id="navToggle">
+      <span class="nav-toggle__label">Menu</span>
+      <span class="nav-toggle__icon" aria-hidden="true">☰</span>
+    </button>
+  </div>
+
+  <div class="mobile-menu" id="mobile-menu" hidden>
+    <a href="/shop/" class="mobile-menu__link">Shop</a>
+    <a href="/categories/" class="mobile-menu__link">Collections</a>
+    <a href="/cart/" class="mobile-menu__link">Cart</a>
+    <a href="/account/" class="mobile-menu__link">Account</a>
+  </div>
+</header>

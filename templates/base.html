@@ -1,19 +1,24 @@
-{% comment %} Base template for ecommerce frontend {% endcomment %}
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Qwentin Demo</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Qwentin{% endblock %}</title>
+  <meta name="description" content="A modern ecommerce starter theme built with Django templates and clean design.">
+  <link rel="stylesheet" href="{% static 'css/design.css' %}">
+  {% block head %}{% endblock %}
 </head>
-<body>
-    <header>
-        <!-- Header content -->
-    </header>
-    <main>
-        <!-- Main content -->
-        {% block content %}{% endblock %}
-    </main>
-    <footer>
-        <!-- Footer content -->
-    </footer>
+<body class="page-shell">
+  {% include 'includes/header.html' %}
+
+  <main class="page-layout">
+    {% block content %}{% endblock %}
+  </main>
+
+  {% include 'includes/footer.html' %}
+
+  <script src="{% static 'js/ui.js' %}" defer></script>
+  {% block scripts %}{% endblock %}
 </body>
 </html>

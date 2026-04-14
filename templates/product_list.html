@@ -1,1 +1,48 @@
-{% extends 'base.html' %}{% block content %}<section class='product-list'><h2>Product List</h2><div class='grid'>{% for product in products %}<div class='product-card'><img src='{{ product.image }}' alt='Product Image'><h3>{{ product.title }}</h3><p>{{ product.price }}</p><button>Add to Cart</button></div>{% endfor %}</div></section>{% endblock %}
+{% extends 'base.html' %}
+
+{% block title %}Shop - Qwentin{% endblock %}
+
+{% block content %}
+<section class="collection-shell container">
+  <div class="section-heading">
+    <p class="eyebrow">Shop</p>
+    <h1>Browse the full collection</h1>
+    <p class="section-copy">Filter products by category, price, and availability to find the perfect item.</p>
+  </div>
+
+  <div class="collection-layout">
+    <aside class="collection-filters">
+      <div class="filter-card">
+        <h2>Filters</h2>
+        <div class="filter-group">
+          <p class="filter-label">Category</p>
+          {% for category in categories %}
+            <a href="{{ category.url|default:'/shop/?category='|add:category.slug }}" class="filter-chip">{{ category.title }}</a>
+          {% endfor %}
+        </div>
+        <div class="filter-group">
+          <p class="filter-label">Sort by</p>
+          <select name="sort" class="select-field">
+            <option value="newest">Newest</option>
+            <option value="price_low">Price: Low to high</option>
+            <option value="price_high">Price: High to low</option>
+          </select>
+        </div>
+      </div>
+    </aside>
+
+    <div class="collection-results">
+      <div class="product-grid">
+        {% for product in products %}
+          {% include 'includes/product_card.html' with product=product %}
+        {% empty %}
+          <div class="empty-state empty-state--wide">
+            <h2>No products found</h2>
+            <p>Try adjusting the filters or check back later for new arrivals.</p>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

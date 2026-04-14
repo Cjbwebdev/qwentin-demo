@@ -1,6 +1,63 @@
-{% extends 'base.html' %}
+﻿{% extends 'base.html' %}
+
+{% block title %}Home - Qwentin{% endblock %}
+
 {% block content %}
-    <section>
-        <!-- Home page content -->
-    </section>
+<section class="hero-shell">
+  <div class="hero-grid container">
+    <div class="hero-copy">
+      <p class="eyebrow">New arrivals</p>
+      <h1>Launch your storefront with a fresh, modern ecommerce showcase.</h1>
+      <p class="hero-text">Designed for product-rich shop experiences, our starter theme combines effortless browsing, clean merchandising, and premium product detail layouts.</p>
+      <div class="hero-actions">
+        <a href="/shop/" class="btn btn-primary">Shop new collection</a>
+        <a href="/categories/" class="btn btn-secondary">Browse categories</a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-card">
+        <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=900&q=80" alt="Featured product showcase">
+        <div class="hero-card__info">
+          <span class="hero-card__tag">Featured</span>
+          <p class="hero-card__title">Essential gear for everyday style</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="featured-shell container">
+  <div class="section-heading">
+    <p class="eyebrow">Featured products</p>
+    <h2>Best sellers curated for your storefront</h2>
+  </div>
+  <div class="product-grid">
+    {% for product in featured_products %}
+      {% include 'includes/product_card.html' with product=product %}
+    {% empty %}
+      <p class="empty-copy">No featured products are available right now.</p>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="category-shell container">
+  <div class="section-heading">
+    <p class="eyebrow">Collections</p>
+    <h2>Shop by category</h2>
+  </div>
+  <div class="category-grid">
+    {% for category in categories %}
+      <a href="{{ category.get_absolute_url }}" class="category-card">
+        <div class="category-card__media" style="background-image:url('{{ category.image_url|default:'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=80' }}')"></div>
+        <div class="category-card__body">
+          <span class="category-card__label">{{ category.title }}</span>
+          <p>{{ category.description|default:'Trending essentials and seasonal favorites' }}</p>
+        </div>
+      </a>
+    {% empty %}
+      <p class="empty-copy">No categories have been configured yet.</p>
+    {% endfor %}
+  </div>
+</section>
 {% endblock %}

@@ -1,0 +1,17 @@
+<header class="site-header">
+  <div class="site-header__inner container">
+    <a href="/" class="brand-link">Qwentin</a>
+
+    <nav class="site-nav" aria-label="Primary navigation">
+      <a href="/" class="site-nav__item">Home</a>
+      <a href="/shop/" class="site-nav__item">Shop</a>
+      <a href="/categories/" class="site-nav__item">Categories</a>
+      <a href="/cart/" class="site-nav__item site-nav__cart">
+        Cart
+        {% if cart_count %}
+          <span class="badge">{{ cart_count }}</span>
+        {% endif %}
+      </a>
+    </nav>
+  </div>
+</header>

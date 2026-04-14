@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}Account — Qwentin{% endblock %}
+
+{% block content %}
+<section class="container">
+  <div class="section-heading">
+    <p class="eyebrow">Account</p>
+    <h1>Welcome back{% if user.is_authenticated %}, {{ user.first_name|default:user.username }}{% endif %}</h1>
+    <p class="section-copy">Manage your details, orders, and preferences in one place.</p>
+  </div>
+
+  <div class="grid-cols-2">
+    <div class="section-panel">
+      <h2>Profile</h2>
+      {% if user.is_authenticated %}
+        <p><strong>Email</strong><br>{{ user.email }}</p>
+        <p><strong>Member since</strong><br>{{ user.date_joined|date:'F j, Y' }}</p>
+      {% else %}
+        <p>You are not signed in. <a href="/account/login/">Sign in</a> to access saved orders and preferences.</p>
+      {% endif %}
+    </div>
+
+    <div class="section-panel">
+      <h2>Order summary</h2>
+      {% if orders %}
+        <ul class="account-orders">
+          {% for order in orders %}
+            <li>
+              <strong>Order {{ order.number }}</strong>
+              <p>{{ order.status }} · {{ order.total }}</p>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>No recent orders found. Start shopping to place your first order.</p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block title %}Checkout - Qwentin{% endblock %}
+
+{% block content %}
+<section class="checkout-shell container">
+  <div class="section-heading">
+    <p class="eyebrow">Secure checkout</p>
+    <h1>Complete your order</h1>
+    <p class="section-copy">Enter your shipping and payment details to finish your purchase.</p>
+  </div>
+
+  <div class="checkout-layout">
+    <form action="/checkout/complete/" method="post" class="checkout-form">
+      {% csrf_token %}
+      <div class="form-card">
+        <h2>Contact information</h2>
+        <label class="field-label">Email address</label>
+        <input type="email" name="email" placeholder="you@example.com" required>
+
+        <h2>Shipping address</h2>
+        <div class="field-grid">
+          <label class="field-label">First name</label>
+          <input type="text" name="first_name" placeholder="First name" required>
+          <label class="field-label">Last name</label>
+          <input type="text" name="last_name" placeholder="Last name" required>
+        </div>
+
+        <label class="field-label">Address</label>
+        <input type="text" name="address" placeholder="123 Maple Street" required>
+        <label class="field-label">City</label>
+        <input type="text" name="city" placeholder="City" required>
+        <div class="field-grid">
+          <label class="field-label">State / Region</label>
+          <input type="text" name="region" placeholder="State" required>
+          <label class="field-label">Postal code</label>
+          <input type="text" name="postal_code" placeholder="12345" required>
+        </div>
+        <label class="field-label">Country</label>
+        <input type="text" name="country" placeholder="Country" required>
+      </div>
+
+      <div class="form-card">
+        <h2>Payment</h2>
+        <label class="field-label">Card number</label>
+        <input type="text" name="card_number" placeholder="1234 5678 9012 3456" required>
+        <div class="field-grid">
+          <label class="field-label">Expiry</label>
+          <input type="text" name="expiry" placeholder="MM/YY" required>
+          <label class="field-label">CVC</label>
+          <input type="text" name="cvc" placeholder="123" required>
+        </div>
+        <label class="field-label">Name on card</label>
+        <input type="text" name="card_name" placeholder="Cardholder name" required>
+      </div>
+
+      <div class="checkout-actions">
+        <a href="/cart/" class="btn btn-secondary">Return to cart</a>
+        <button type="submit" class="btn btn-primary">Place order</button>
+      </div>
+    </form>
+
+    <aside class="order-summary">
+      <div class="summary-card summary-card--sticky">
+        <p class="summary-label">Order summary</p>
+        <div class="summary-detail">
+          <span>Items</span>
+          <span>{{ cart.subtotal }}</span>
+        </div>
+        <div class="summary-detail">
+          <span>Shipping</span>
+          <span>{{ cart.shipping|default:'Calculated at checkout' }}</span>
+        </div>
+        <div class="summary-detail summary-detail--total">
+          <span>Total</span>
+          <span>{{ cart.total }}</span>
+        </div>
+        <p class="summary-note">Secure checkout powered by your payment provider.</p>
+      </div>
+    </aside>
+  </div>
+</section>
+{% endblock %}

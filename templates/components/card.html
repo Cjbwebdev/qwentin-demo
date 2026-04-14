@@ -1,0 +1,19 @@
+{# Reusable card component: image, title, meta, and actions #}
+<article class="card">
+  <a href="{{ url|default:'#' }}" class="card__media" aria-label="View {{ title }}">
+    <img src="{{ image_url|default:'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=900&q=80' }}" alt="{{ title }}" loading="lazy" decoding="async">
+  </a>
+  <div class="card__body">
+    <p class="card__eyebrow">{{ eyebrow|default:'' }}</p>
+    <h3 class="card__title">{{ title }}</h3>
+    <p class="card__meta">{{ meta|default:'' }}</p>
+    <div class="card__actions">
+      {% if button_text %}
+      <a href="{{ url|default:'#' }}" class="btn btn-secondary">{{ button_text }}</a>
+      {% endif %}
+      {% if badge %}
+      <span class="card__badge">{{ badge }}</span>
+      {% endif %}
+    </div>
+  </div>
+</article>

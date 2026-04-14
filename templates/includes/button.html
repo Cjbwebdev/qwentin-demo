@@ -1,0 +1,5 @@
+{% if href %}
+  <a href="{{ href }}" class="btn {% if variant == 'secondary' %}btn-secondary{% endif %} {% if full_width %}btn-full{% endif %}">{{ label }}</a>
+{% else %}
+  <button type="{{ type|default:'button' }}" class="btn {% if variant == 'secondary' %}btn-secondary{% endif %} {% if full_width %}btn-full{% endif %}">{{ label }}</button>
+{% endif %}

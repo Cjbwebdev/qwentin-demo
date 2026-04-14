@@ -1,0 +1,17 @@
+﻿<article class="product-card">
+  <a href="{{ product.get_absolute_url }}" class="product-card__image" aria-label="View {{ product.title }}">
+    <img src="{{ product.image_url|default:'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=900&q=80' }}" alt="{{ product.title }}" loading="lazy">
+  </a>
+  <div class="product-card__body">
+    <a href="{{ product.get_absolute_url }}" class="product-card__title">{{ product.title }}</a>
+    <p class="product-card__meta">{{ product.subtitle|default:"Premium quality with fast shipping" }}</p>
+    <div class="product-card__footer">
+      <span class="product-card__price">{{ product.price }}</span>
+      <form action="/cart/add/" method="post" class="product-card__action">
+        {% csrf_token %}
+        <input type="hidden" name="product_id" value="{{ product.id }}">
+        <button type="submit" class="btn btn-sm btn-primary">Add to Cart</button>
+      </form>
+    </div>
+  </div>
+</article>

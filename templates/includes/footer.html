@@ -1,0 +1,36 @@
+{# Footer include with site links and newsletter signup #}
+<footer class="page-footer" role="contentinfo">
+  <div class="page-footer__inner container">
+    <div class="footer-branding">
+      <p class="footer-logo">Qwentin</p>
+      <p class="footer-copy">A modern commerce experience for thoughtfully curated products.</p>
+    </div>
+
+    <div class="footer-links">
+      <div>
+        <h2 class="footer-heading">Explore</h2>
+        <a href="/shop/">Shop</a>
+        <a href="/categories/">Collections</a>
+        <a href="/about/">About</a>
+      </div>
+      <div>
+        <h2 class="footer-heading">Support</h2>
+        <a href="/help/">Help</a>
+        <a href="/contact/">Contact</a>
+        <a href="/terms/">Terms</a>
+      </div>
+    </div>
+
+    <form action="/newsletter/" method="post" class="newsletter-form" novalidate>
+      {% csrf_token %}
+      <p class="newsletter-title">Stay in the loop</p>
+      <label for="newsletter-email" class="sr-only">Email address</label>
+      <input id="newsletter-email" type="email" name="email" placeholder="Your email address" class="newsletter-input" required>
+      <button type="submit" class="btn btn-primary btn-sm">Subscribe</button>
+    </form>
+  </div>
+
+  <div class="footer-bottom container">
+    <p>© {% now "Y" %} Qwentin. Built with thoughtful design.</p>
+  </div>
+</footer>

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}Home — Qwentin{% endblock %}
+
+{% block content %}
+<section class="hero-panel container">
+  <div>
+    <p class="eyebrow">Featured launch</p>
+    <h1>Design a curated shopping experience that feels premium and effortless.</h1>
+    <p>Built for brands that want clarity, confidence, and conversion-ready product storytelling in a clean, modern storefront.</p>
+    <div class="hero-actions">
+      <a href="/shop/" class="btn btn-primary">Shop new arrivals</a>
+      <a href="/categories/" class="btn btn-outline">Browse collections</a>
+    </div>
+  </div>
+  <div class="hero-panel__visual">
+    <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=900&q=80" alt="Signature product display" loading="lazy" decoding="async">
+  </div>
+</section>
+
+<section class="container">
+  <div class="section-heading">
+    <p class="eyebrow">Why Qwentin</p>
+    <h2>Fast commerce design with a thoughtful visual system</h2>
+  </div>
+  <div class="features-grid">
+    <article class="feature-card">
+      <h3>Polished product presentation</h3>
+      <p>Showcase product details, imagery, and pricing clearly across desktop and mobile layouts.</p>
+    </article>
+    <article class="feature-card">
+      <h3>Modular page sections</h3>
+      <p>Reuse cards, forms, and layout patterns for collections, detail pages, and checkout flows.</p>
+    </article>
+    <article class="feature-card">
+      <h3>Built for performance</h3>
+      <p>Minimal CSS, lazy-loading images, and semantic markup for better speed and accessibility.</p>
+    </article>
+  </div>
+</section>
+
+<section class="container">
+  <div class="section-heading">
+    <p class="eyebrow">Latest items</p>
+    <h2>Featured products from the storefront</h2>
+  </div>
+  <div class="grid-cols-3">
+    {% for item in latest_items %}
+      {% include 'components/card.html' with
+        title=item.title
+        eyebrow=item.category
+        meta=item.subtitle
+        image_url=item.image_url
+        url=item.url
+        button_text='View'
+        badge=item.badge
+      %}
+    {% empty %}
+      <p>No products available yet.</p>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
